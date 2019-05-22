@@ -26,15 +26,16 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-// if (isset($_FILES['filetoupload'])) {
-if ( move_uploaded_file( $_FILES['filetoupload']['tmp_name'] , basename($_FILES['filetoupload']['name']) )) {
-  $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+if (isset($_FILES['filetoupload'])) {
+// if ( move_uploaded_file( $_FILES['filetoupload']['tmp_name'] , basename($_FILES['filetoupload']['name']) )) {
+  $connectionString = "DefaultEndpointsProtocol=https;AccountName=mostblob;AccountKey=bgJVCuvsk5ik4CjuPY4iUsZB1X/GsZ5vR332S5BWsXXpF5pa9uVA8RBvnh+Yer6INf9Ma3C1HyQZ8bnmwwOqGg==;";
+  // $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
   // Create blob client.
   $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-  // $fileToUpload = $_FILES['filetoupload']['tmp_name'];
-  $fileToUpload = $_FILES['filetoupload']['name'];
-  // $fileName = $_FILES['filetoupload']['name'];
+  $fileToUpload = $_FILES['filetoupload']['tmp_name'];
+  // $fileToUpload = $_FILES['filetoupload']['name'];
+  $fileName = $_FILES['filetoupload']['name'];
 
   $createContainerOptions = new CreateContainerOptions();
   $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
@@ -58,10 +59,10 @@ if ( move_uploaded_file( $_FILES['filetoupload']['tmp_name'] , basename($_FILES[
     // $content = fopen($fileToUpload, "r");
     $blob_content = file_get_contents($fileToUpload);
     //Upload blob
-    $blobClient->createBlockBlob($containerName, $fileToUpload, $blob_content);
+    $blobClient->createBlockBlob($containerName, $fileName, $blob_content);
     // Get blob.
     echo "This is the content of the blob uploaded: ";
-    $blob = $blobClient->getBlob($containerName, $fileToUpload);
+    $blob = $blobClient->getBlob($containerName, $fileName);
     fpassthru($blob->getContentStream());
     echo $blob->getName().": ".$blob->getUrl()."<br />";
     echo "<br />";
