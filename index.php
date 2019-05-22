@@ -34,7 +34,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
   $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 //  $fileToUpload = $_FILES['filetoupload']['tmp_name'];
-  $fileToUpload = "51011035.png";
+  $fileToUpload = "HelloWorld.txt";
   // $fileToUpload = $_FILES['filetoupload']['name'];
 //  $fileName = $_FILES['filetoupload']['name'];
   $fileName = $fileToUpload;
