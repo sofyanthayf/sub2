@@ -4,8 +4,8 @@
 *
 * Copyright (c) Microsoft Corporation. All rights reserved.
 *
-* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-* EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES 
+* THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+* EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES
 * OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 *----------------------------------------------------------------------------------
 * The example companies, organizations, products, domain names,
@@ -17,18 +17,18 @@
 **/
 
 /** -------------------------------------------------------------
-# Azure Storage Blob Sample - Demonstrate how to use the Blob Storage service. 
-# Blob storage stores unstructured data such as text, binary data, documents or media files. 
-# Blobs can be accessed from anywhere in the world via HTTP or HTTPS. 
+# Azure Storage Blob Sample - Demonstrate how to use the Blob Storage service.
+# Blob storage stores unstructured data such as text, binary data, documents or media files.
+# Blobs can be accessed from anywhere in the world via HTTP or HTTPS.
 #
-# Documentation References: 
-#  - Associated Article - https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-php 
-#  - What is a Storage Account - http://azure.microsoft.com/en-us/documentation/articles/storage-whatis-account/ 
+# Documentation References:
+#  - Associated Article - https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-php
+#  - What is a Storage Account - http://azure.microsoft.com/en-us/documentation/articles/storage-whatis-account/
 #  - Getting Started with Blobs - https://azure.microsoft.com/en-us/documentation/articles/storage-php-how-to-use-blobs/
-#  - Blob Service Concepts - http://msdn.microsoft.com/en-us/library/dd179376.aspx 
-#  - Blob Service REST API - http://msdn.microsoft.com/en-us/library/dd135733.aspx 
+#  - Blob Service Concepts - http://msdn.microsoft.com/en-us/library/dd179376.aspx
+#  - Blob Service REST API - http://msdn.microsoft.com/en-us/library/dd135733.aspx
 #  - Blob Service PHP API - https://github.com/Azure/azure-storage-php
-#  - Storage Emulator - http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/ 
+#  - Storage Emulator - http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/
 #
 **/
 
@@ -41,7 +41,8 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+// $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=mostblob;AccountKey=bgJVCuvsk5ik4CjuPY4iUsZB1X/GsZ5vR332S5BWsXXpF5pa9uVA8RBvnh+Yer6INf9Ma3C1HyQZ8bnmwwOqGg==;";
 
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
@@ -81,12 +82,12 @@ if (!isset($_GET["Cleanup"])) {
         // Getting local file so that we can upload it to Azure
         $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);
-        
+
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
         echo $fileToUpload;
         echo "<br />";
-        
+
         $content = fopen($fileToUpload, "r");
 
         //Upload blob
@@ -104,7 +105,7 @@ if (!isset($_GET["Cleanup"])) {
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
             }
-        
+
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
         } while($result->getContinuationToken());
         echo "<br />";
@@ -131,8 +132,8 @@ if (!isset($_GET["Cleanup"])) {
         $error_message = $e->getMessage();
         echo $code.": ".$error_message."<br />";
     }
-} 
-else 
+}
+else
 {
 
     try{
