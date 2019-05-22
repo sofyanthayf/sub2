@@ -53,7 +53,7 @@ if (isset($_FILES['filetoupload'])) {
 
     # Upload file as a block blob
     echo "Uploading BlockBlob: ".PHP_EOL;
-    echo $fileToUpload;
+    echo $fileName;
     echo "<br />";
 
     // $content = fopen($fileToUpload, "r");
